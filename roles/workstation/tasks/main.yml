@@ -1,0 +1,84 @@
+## Load distro-specific variables
+- include_vars: "{{ ansible_distribution }}.yml"
+  tags: always
+
+- block:
+  ## User Configs
+  - import_tasks: users/hylke.yml
+
+  ## Desktop Environment
+  - include_tasks: desktop_environments/gnome/appearance.yml
+    when: gnome is defined and gnome == true
+  
+  # - include_tasks: desktop_environments/gnome/keybindings.yml
+  #   when: gnome is defined and gnome == true
+
+  # - include_tasks: desktop_environments/gnome/nautilus.yml
+  #   when: gnome is defined and gnome == true
+
+  # - include_tasks: desktop_environments/gnome/packages.yml
+  #   when: gnome is defined and gnome == true
+  
+  # - include_tasks: desktop_environments/gnome/peripherals.yml
+  #   when: gnome is defined and gnome == true
+
+  # - include_tasks: desktop_environments/gnome/shell_settings.yml
+  #   when: gnome is defined and gnome == true
+
+  # - include_tasks: desktop_environments/gnome/terminal.yml
+  #   when: gnome is defined and gnome == true
+
+  # - include_tasks: desktop_environments/gnome/tracker.yml
+  #   when: gnome is defined and gnome == true
+    
+  ## System Setup
+  # - import_tasks: system_setup/autofs.yml
+  # - import_tasks: system_setup/scripts.yml
+  # - import_tasks: system_setup/tweaks.yml
+
+  ## Install Software
+  # - import_tasks: software/brave-browser.yml
+  # - import_tasks: software/firefox.yml
+  # - import_tasks: software/google-chrome.yml
+  # - import_tasks: software/opera.yml
+  # - import_tasks: software/mailspring.yml
+  # - import_tasks: software/tilix.yml
+  # - import_tasks: software/filezilla.yml
+  # - import_tasks: software/vscode.yml
+  # - import_tasks: software/android-studio.yml
+  # - import_tasks: software/intellij-idea.yml
+  # - import_tasks: software/discord.yml
+  # - import_tasks: software/quassel-irc.yml
+  # - import_tasks: software/weechat.yml
+  # - import_tasks: software/slack.yml
+  # - import_tasks: software/signal.yml
+  # - import_tasks: software/maps.yml
+  # - import_tasks: software/calendar.yml
+  # - import_tasks: software/rhythmbox.yml
+  # - import_tasks: software/mpd.yml
+  # - import_tasks: software/ncmpcpp.yml
+
+  # - import_tasks: software/gnome-tweak-tools.yml
+  #   when: gnome is defined and gnome == true
+
+  # - import_tasks: software/blender.yml
+  # - import_tasks: software/inkscape.yml
+  # - import_tasks: software/gimp.yml
+  # - import_tasks: software/libreoffice.yml
+  # - import_tasks: software/cheese.yml
+  # - import_tasks: software/obs-studio.yml
+  # - import_tasks: software/bpytop.yml
+  # - import_tasks: software/glances.yml
+
+  ## Install Dev Tools
+  # - import_tasks: dev_tools/nodejs.yml
+  # - import_tasks: dev_tools/ionic.yml
+  # - import_tasks: dev_tools/php.yml
+  # - import_tasks: dev_tools/python.yml
+  # - import_tasks: dev_tools/go.yml
+  # - import_tasks: dev_tools/rust.yml
+  # - import_tasks: dev_tools/java.yml
+  # - import_tasks: dev_tools/ruby.yml
+
+  rescue:
+    - set_fact: task_failed=true

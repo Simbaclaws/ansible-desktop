@@ -1,0 +1,121 @@
+- name: gnome | appearance | get flat-wallpapers
+  git:
+    repo: 'https://github.com/Simbaclaws/flat-wallpapers.git'
+    dest: /usr/share/backgrounds/flat-wallpapers
+
+- name: gnome | appearance | get linux-wallpapers
+  git:
+    repo: 'https://github.com/Simbaclaws/linux-wallpapers.git'
+    dest: /usr/share/backgrounds/linux-wallpapers
+
+- name: gnome | appearance | get star-citizen-wallpapers
+  git:
+    repo: 'https://github.com/Simbaclaws/star-citizen-wallpapers.git'
+    dest: /usr/share/backgrounds/star-citizen-wallpapers
+
+- name: gnome | appearance | get nature-wallpapers
+  git:
+    repo: 'https://github.com/Simbaclaws/nature-wallpapers.git'
+    dest: /usr/share/backgrounds/nature-wallpapers
+
+- name: gnome | appearance | set default wallpaper
+  become_user: simbaclaws
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/flat-wallpapers/wallpaper27.jpg'"
+
+- name: gnome | appearance | set wallpaper position
+  become_user: simbaclaws
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"
+
+- name: gnome | appearance | install theme dependencies
+  yum:
+    name: 'gtk-murrine-engine gtk2-engines sassc optipng inkscape glib2-devel'
+    state: latest
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '7'
+
+- name: gnome | appearance | install theme dependencies
+  dnf:
+    name: 'gtk-murrine-engine gtk2-engines sassc optipng inkscape glib2-devel'
+    state: latest
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8'
+
+- name: gnome | appearance | install theme dependencies
+  apt-get:
+    name: 'gtk2-engines-murrine gtk2-engines-pixbuf sassc optipng inkscape'
+    state: latest
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: gnome | appearance | install theme dependencies
+  apt-get:
+    name: 'libglib2.0-dev-bin'
+    state: latest
+  when: ansible_distribution == 'Ubuntu' and (ansible_distribution_version == '20.04' or ansible_distribution_version == '20.10')
+
+- name: gnome | appearance | install theme dependencies
+  apt-get:
+    name: 'libglib2.0-dev libxml2-utils'
+    state: latest
+  when: (ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04') or (ansible_distribution == 'Debian' and ansible_distribution_version == '10.03') or (ansible_distribution == 'Linux Mint' and ansible_distribution_version == '19')
+
+- name: gnome | appearance | install theme dependencies
+  pacman:
+    name: 'gtk-engine-murrine gtk-engines sassc optipng inkscape'
+    state: latest
+  when: ansible_facts['os_family'] == 'Archlinux'
+
+- name: gnome | appearance | get gtk theme
+  git:
+    repo: 'https://github.com/vinceliuice/WhiteSur-gtk-theme.git'
+    dest: /home/hylke/WhiteSur
+
+- name: gnome | appearance | install gtk theme
+  tasks:
+    - name: Run the install script
+      delegate_to: localhost
+      become: true
+      command: /home/hylke/WhiteSur/install.sh -g -i fedora
+      when: ansible_distribution == 'Fedora'
+
+    - name: Run the install script
+      delegate_to: localhost
+      become: true
+      command: /home/hylke/WhiteSur/install.sh -g -i ubuntu
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Run the install script
+      delegate_to: localhost
+      become: true
+      command: /home/hylke/WhiteSur/install.sh -g -i void
+      when: ansible_distribution == 'Void'
+
+    - name: Run the install script
+      delegate_to: localhost
+      become: true
+      command: /home/hylke/WhiteSur/install.sh -g -i manjaro
+      when: ansible_distribution == 'Manjaro'
+
+    - name: Run the install script
+      delegate_to: localhost
+      become: true
+      command: /home/hylke/WhiteSur/install.sh -g -i debian
+      when: ansible_distribution == 'Debian'
+
+    - name: Run the install script
+      delegate_to: localhost
+      become: true
+      command: /home/hylke/WhiteSur/install.sh -g -i arch
+      when: ansible_distribution == 'Archlinux'
+
+- name: gnome | appearance | get icon theme
+  git:
+    repo: 'https://github.com/vinceliuice/WhiteSur-icon-theme.git'
+    dest: /home/hylke/WhiteSur-icon
+
+- name: gnome | appearance | install icon theme
+  tasks:
+    - name: Run the install script
+      delegate_to: localhost
+      command: /home/hylke/WhiteSur-icon/install.sh

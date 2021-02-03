@@ -1,45 +1,64 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: all
+  tags: always
   become: true
+  pre_tasks:
+    - name: pre-run | update package cache (arch)
+      tags: always
+      pacman: update_cache=yes
+      changed_when: False
+      when: ansible_facts['os_family'] == 'Archlinux'
+    
+    - name: pre-run | update package cache (debian, etc)
+      tags: always
+      apt: update_cache=yes
+      changed_when: False
+      when: ansible_facts['os_family'] == 'Debian'
 
+- hosts: all
+  tags: base
+  become: true
+  roles:
+    - base
+
+- hosts: workstation
+  tags: workstation
+  become: true
+  roles:
+    - workstation
+
+- hosts: server
+  tags: server
+  become: true
+  roles:
+    - server
+
+- hosts: all
+  become: true
   tasks:
-  - name: install terminal tools
-    package:
-      name:
-        - htop
-        - tmux
-        - vim
+  - name: cleanup package cache (debian based)
+    tags: always
+    apt:
+      autoclean: yes
+    changed_when: false
+    when: ansible_facts['os_family'] == 'Debian'
 
-  - name: get flat-wallpapers
-    git:
-      repo: 'https://github.com/Simbaclaws/flat-wallpapers.git'
-      dest: /usr/share/backgrounds/flat-wallpapers
+  - name: autoremove orphan packages (debian based)
+    tags: always
+    apt:
+      autoremove: yes
+      purge: yes
+    when: ansible_facts['os_family'] == 'Debian'
 
-  - name: get linux-wallpapers
-    git:
-      repo: 'https://github.com/Simbaclaws/linux-wallpapers.git'
-      dest: /usr/share/backgrounds/linux-wallpapers
+  # - name: send completion alert
+  #   include_tasks: playbooks/send_completion_alert.yml
+  #   tags: always
+  #   when:
+  #     - task_failed is not defined
 
-  - name: get star-citizen-wallpapers
-    git:
-      repo: 'https://github.com/Simbaclaws/star-citizen-wallpapers.git'
-      dest: /usr/share/backgrounds/star-citizen-wallpapers
-
-  - name: get nature-wallpapers
-    git:
-      repo: 'https://github.com/Simbaclaws/nature-wallpapers.git'
-      dest: /usr/share/backgrounds/nature-wallpapers
-
-  - name: set wallpaper
-    become_user: simbaclaws
-    dconf:
-      key: "/org/gnome/desktop/background/picture-uri"
-      value: "'file:///usr/share/backgrounds/flat-wallpapers/wallpaper27.jpg'"
-
-  - name: set wallpaper position
-    become_user: simbaclaws
-    dconf:
-      key: "/org/gnome/desktop/background/picture-options"
-      value: "'zoom'"
-      
+  # - name: send failure alert
+  #   include_tasks: playbooks/send_failure_alert.yml
+  #   tags: always
+  #   when:
+  #     - task_failed is defined
+  #     - task_failed == true
