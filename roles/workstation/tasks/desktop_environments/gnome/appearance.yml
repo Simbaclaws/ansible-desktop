@@ -19,13 +19,13 @@
     dest: /usr/share/backgrounds/nature-wallpapers
 
 - name: gnome | appearance | set default wallpaper
-  become_user: simbaclaws
+  become_user: hylke
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/flat-wallpapers/wallpaper27.jpg'"
 
 - name: gnome | appearance | set wallpaper position
-  become_user: simbaclaws
+  become_user: hylke
   dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
