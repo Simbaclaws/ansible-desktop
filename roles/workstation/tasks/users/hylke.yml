@@ -67,7 +67,7 @@
 - name: users | hylke | copy profile image
   tags: dotfiles,dotfiles-hylke
   copy:
-    src: users/hylke/profile_image.png
+    src: users/hylke/profile_image.jpeg
     dest: /var/lib/AccountsService/icons/hylke.png
     owner: root
     group: root
