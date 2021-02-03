@@ -14,22 +14,22 @@
   - name: get flat-wallpapers
     git:
       repo: 'https://github.com/Simbaclaws/flat-wallpapers.git'
-      dest: /usr/share/backgrounds
+      dest: /usr/share/backgrounds/flat-wallpapers
 
   - name: get linux-wallpapers
     git:
       repo: 'https://github.com/Simbaclaws/linux-wallpapers.git'
-      dest: /usr/share/backgrounds
+      dest: /usr/share/backgrounds/linux-wallpapers
 
   - name: get star-citizen-wallpapers
     git:
       repo: 'https://github.com/Simbaclaws/star-citizen-wallpapers.git'
-      dest: /usr/share/backgrounds
+      dest: /usr/share/backgrounds/star-citizen-wallpapers
 
   - name: get nature-wallpapers
     git:
       repo: 'https://github.com/Simbaclaws/nature-wallpapers.git'
-      dest: /usr/share/backgrounds
+      dest: /usr/share/backgrounds/nature-wallpapers
 
   - name: set wallpaper
     become_user: simbaclaws
