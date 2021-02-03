@@ -43,19 +43,19 @@
   when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8'
 
 - name: gnome | appearance | install theme dependencies
-  apt-get:
+  apt:
     name: 'gtk2-engines-murrine gtk2-engines-pixbuf sassc optipng inkscape'
     state: latest
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: gnome | appearance | install theme dependencies
-  apt-get:
+  apt:
     name: 'libglib2.0-dev-bin'
     state: latest
   when: ansible_distribution == 'Ubuntu' and (ansible_distribution_version == '20.04' or ansible_distribution_version == '20.10')
 
 - name: gnome | appearance | install theme dependencies
-  apt-get:
+  apt:
     name: 'libglib2.0-dev libxml2-utils'
     state: latest
   when: (ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04') or (ansible_distribution == 'Debian' and ansible_distribution_version == '10.03') or (ansible_distribution == 'Linux Mint' and ansible_distribution_version == '19')

@@ -12,7 +12,7 @@
   when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8'
 
 - name: system setup | full upgrade
-  apt-get:
+  apt:
     name: '*'
     state: latest
   when: ansible_facts['os_family'] == 'Debian'
