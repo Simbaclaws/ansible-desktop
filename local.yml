@@ -11,9 +11,30 @@
         - tmux
         - vim
 
-  - name: copy wallpapers
-    copy:
-      src: files/wallpapers/*
+  - name: get flat-wallpapers
+    git:
+      repo: 'https://github.com/Simbaclaws/flat-wallpapers.git'
+      dest: /usr/share/backgrounds
+      owner: root
+      group: root
+
+  - name: get linux-wallpapers
+    git:
+      repo: 'https://github.com/Simbaclaws/linux-wallpapers.git'
+      dest: /usr/share/backgrounds
+      owner: root
+      group: root
+
+  - name: get star-citizen-wallpapers
+    git:
+      repo: 'https://github.com/Simbaclaws/star-citizen-wallpapers.git'
+      dest: /usr/share/backgrounds
+      owner: root
+      group: root
+
+  - name: get nature-wallpapers
+    git:
+      repo: 'https://github.com/Simbaclaws/nature-wallpapers.git'
       dest: /usr/share/backgrounds
       owner: root
       group: root
