@@ -29,15 +29,11 @@
     git:
       repo: 'https://github.com/Simbaclaws/star-citizen-wallpapers.git'
       dest: /usr/share/backgrounds
-      owner: root
-      group: root
 
   - name: get nature-wallpapers
     git:
       repo: 'https://github.com/Simbaclaws/nature-wallpapers.git'
       dest: /usr/share/backgrounds
-      owner: root
-      group: root
 
   - name: set wallpaper
     become_user: simbaclaws
