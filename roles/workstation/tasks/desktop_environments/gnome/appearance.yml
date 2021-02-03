@@ -72,42 +72,40 @@
     dest: /home/hylke/WhiteSur
 
 - name: gnome | appearance | install gtk theme
-  tasks:
-    - name: Run the install script
-      delegate_to: localhost
-      become: true
-      command: /home/hylke/WhiteSur/install.sh -g -i fedora
-      when: ansible_distribution == 'Fedora'
+  delegate_to: localhost
+  become: true
+  command: /home/hylke/WhiteSur/install.sh -g -i fedora
+  when: ansible_distribution == 'Fedora'
 
-    - name: Run the install script
-      delegate_to: localhost
-      become: true
-      command: /home/hylke/WhiteSur/install.sh -g -i ubuntu
-      when: ansible_distribution == 'Ubuntu'
+- name: gnome | appearance | install gtk theme
+  delegate_to: localhost
+  become: true
+  command: /home/hylke/WhiteSur/install.sh -g -i ubuntu
+  when: ansible_distribution == 'Ubuntu'
 
-    - name: Run the install script
-      delegate_to: localhost
-      become: true
-      command: /home/hylke/WhiteSur/install.sh -g -i void
-      when: ansible_distribution == 'Void'
+- name: gnome | appearance | install gtk theme
+  delegate_to: localhost
+  become: true
+  command: /home/hylke/WhiteSur/install.sh -g -i void
+  when: ansible_distribution == 'Void'
 
-    - name: Run the install script
-      delegate_to: localhost
-      become: true
-      command: /home/hylke/WhiteSur/install.sh -g -i manjaro
-      when: ansible_distribution == 'Manjaro'
+- name: gnome | appearance | install gtk theme
+  delegate_to: localhost
+  become: true
+  command: /home/hylke/WhiteSur/install.sh -g -i manjaro
+  when: ansible_distribution == 'Manjaro'
 
-    - name: Run the install script
-      delegate_to: localhost
-      become: true
-      command: /home/hylke/WhiteSur/install.sh -g -i debian
-      when: ansible_distribution == 'Debian'
+- name: gnome | appearance | install gtk theme
+  delegate_to: localhost
+  become: true
+  command: /home/hylke/WhiteSur/install.sh -g -i debian
+  when: ansible_distribution == 'Debian'
 
-    - name: Run the install script
-      delegate_to: localhost
-      become: true
-      command: /home/hylke/WhiteSur/install.sh -g -i arch
-      when: ansible_distribution == 'Archlinux'
+- name: gnome | appearance | install gtk theme
+  delegate_to: localhost
+  become: true
+  command: /home/hylke/WhiteSur/install.sh -g -i arch
+  when: ansible_distribution == 'Archlinux'
 
 - name: gnome | appearance | get icon theme
   git:
@@ -115,7 +113,5 @@
     dest: /home/hylke/WhiteSur-icon
 
 - name: gnome | appearance | install icon theme
-  tasks:
-    - name: Run the install script
-      delegate_to: localhost
-      command: /home/hylke/WhiteSur-icon/install.sh
+  delegate_to: localhost
+  command: /home/hylke/WhiteSur-icon/install.sh
