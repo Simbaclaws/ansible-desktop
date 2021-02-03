@@ -15,15 +15,11 @@
     git:
       repo: 'https://github.com/Simbaclaws/flat-wallpapers.git'
       dest: /usr/share/backgrounds
-      owner: root
-      group: root
 
   - name: get linux-wallpapers
     git:
       repo: 'https://github.com/Simbaclaws/linux-wallpapers.git'
       dest: /usr/share/backgrounds
-      owner: root
-      group: root
 
   - name: get star-citizen-wallpapers
     git:
