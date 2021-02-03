@@ -1,0 +1,12 @@
+[submodule "files/wallpapers/flat-wallpapers"]
+	path = files/wallpapers/flat-wallpapers
+	url = https://github.com/Simbaclaws/flat-wallpapers.git
+[submodule "files/wallpapers/star-citizen-wallpapers"]
+	path = files/wallpapers/star-citizen-wallpapers
+	url = https://github.com/Simbaclaws/star-citizen-wallpapers.git
+[submodule "files/wallpapers/linux-wallpapers"]
+	path = files/wallpapers/linux-wallpapers
+	url = https://github.com/Simbaclaws/linux-wallpapers.git
+[submodule "files/wallpapers/nature-wallpapers"]
+	path = files/wallpapers/nature-wallpapers
+	url = https://github.com/Simbaclaws/nature-wallpapers.git
