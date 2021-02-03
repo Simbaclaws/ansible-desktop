@@ -1,2 +1,2 @@
 # ansible-desktop
-My Ansible Desktop Configuration
+My Ansible Desktops and Laptops Configuration
