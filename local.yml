@@ -13,7 +13,7 @@
 
   - name: copy wallpapers
     copy:
-      src: files/wallpapers/{{item}}
+      src: files/wallpapers/*
       dest: /usr/share/backgrounds
       owner: root
       group: root
