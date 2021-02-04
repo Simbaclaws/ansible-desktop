@@ -24,6 +24,13 @@
     - workstation
 
 - hosts: all
+  tasks:
+  - name: Display all variables/facts known for a host
+    ansible.builtin.debug:
+      var: hostvars[inventory_hostname]
+      verbosity: 4
+
+- hosts: all
   become: true
   tasks:
   - name: cleanup package cache (debian based)
