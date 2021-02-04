@@ -1,3 +1,13 @@
+- name: users | hylke | set user
+  tags: hylke,sudo,users
+  user:
+    name: hylke
+    group: hylke
+    groups: adm,ansible,{{sudo_group}}
+    state: present
+    comment: "Hylke Hellinga"
+    shell: /bin/bash
+
 - name: users | hylke | create .ssh directory
   tags: dotfiles,hylke,ssh,users
   file:
