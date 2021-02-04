@@ -34,13 +34,13 @@
   yum:
     name: 'gtk-murrine-engine gtk2-engines sassc optipng inkscape glib2-devel'
     state: latest
-  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['ansible_distribution_major_version'] == '7'
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '7'
 
 - name: gnome | appearance | install theme dependencies
   dnf:
     name: 'gtk-murrine-engine gtk2-engines sassc optipng inkscape glib2-devel'
     state: latest
-  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['ansible_distribution_major_version'] == '8'
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8'
 
 - name: gnome | appearance | install theme dependencies
   apt:
