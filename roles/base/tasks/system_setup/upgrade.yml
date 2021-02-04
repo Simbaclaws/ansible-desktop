@@ -1,7 +1,7 @@
 ## Full System Upgrade
 - name: Display all variables/facts known for a host
   ansible.builtin.debug:
-    var: hostvars[inventory_hostname]
+    var: ansible_facts
     verbosity: 4
 
 - name: system setup | full upgrade
