@@ -15,7 +15,7 @@
   dnf:
     name: '*'
     state: latest
-  when: ansible_facts['ansible_distribution'] == 'Fedora' and ansible_facts['distribution_major_version'] | int >= 22
+  when: ansible_facts['ansible_distribution'] == 'Fedora' and ansible_facts['ansible_distribution_major_version'] | int >= 22
 
 - name: system setup | full upgrade
   yum:
